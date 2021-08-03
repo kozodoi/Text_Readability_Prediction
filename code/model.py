@@ -104,6 +104,8 @@ def get_model(CFG, pretrained = None, silent = False):
             else:
                 if 'bart' in self.model_path:
                     hidden_states = torch.stack(outputs['encoder_hidden_states'])
+                elif 'funnel' in self.model_path:
+                    hidden_states = torch.stack(outputs['hidden_states'][-3:])
                 else:
                     hidden_states = torch.stack(outputs['hidden_states'])
                 for l in range(self.concat_layers):
