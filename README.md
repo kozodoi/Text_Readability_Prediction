@@ -7,9 +7,9 @@ Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/co
 
 ## Summary
 
-Estimating text complexity and readability is a crucial task for teachers. Offering students text passages at the right level of challenge is important for facilitating a fast development of reading skills. The existing tools to estimate text complexity rely in weak proxies and heuristics, which results in a suboptimal quality.
+Estimating text complexity and readability is a crucial task for school teachers. Offering students text passages at the right level of challenge is important for facilitating a fast development of reading skills. The existing tools to estimate text complexity rely on weak proxies and heuristics, which results in a suboptimal accuracy. This project uses deep learning to predict the readability scores of text passages. 
 
-This projects uses deep learning to predict readability score of text passages. My solution is an ensemble of eight transformer models, including Bert, Roberta and others. All transformers are implemented in `PyTorch`. The table below summarizes the main architecture and training parameters. The solution places in the top-9% of the Kaggle competition leaderboard.
+My solution is an ensemble of eight transformer models, including BERT, RoBERTa and others. All transformers are implemented in `PyTorch` and feature a custom regression head that uses a concatenated output of multiple hidden layers. The modeling pipeline implements text augmentations such as sentence order shuffle, backtranslation and injecting target noise. The table below summarizes the main architecture and training parameters. The solution places in the top-9% of the Kaggle competition leaderboard.
 
 ![models](https://i.postimg.cc/JnY0HdWQ/read-params.jpg)
 
@@ -18,8 +18,8 @@ This projects uses deep learning to predict readability score of text passages. 
 
 The project has the following structure:
 - `codes/`: `.py` main scripts with data, model, training and inference modules
-- `notebooks/`: `.ipynb` Colab-friendly notebooks for running model training
-- `input/`: input data
+- `notebooks/`: `.ipynb` Colab-friendly notebooks with model training and emsembling
+- `input/`: input data, including raw texts, backtranslated texts and meta-features
 - `output/`: model configurations, weights and figures exported from the notebooks
 
 
@@ -35,9 +35,10 @@ conda activate read
 
 ### Reproducing solution
 
-The solution can then be reproduced in the following steps:
+The solution can be reproduced in the following steps:
 1. Run training notebooks `01_model_v36.ipynb` - `08_model_v69.ipynb` to obtain weights of base models.
-2. Run the ensembling notebook `09_ensembling.ipynb` to obtain the final predictions.
+2. Run the feature engineering notebook `09_meta_features.ipynb` to calculate text meta-features.
+3. Run the ensembling notebook `10_ensembling.ipynb` to obtain the final predictions.
 
 All training notebooks have the same structure and differ in model/data parameters. Different versions are included to ensure reproducibility. To understand the training process, it is sufficient to go through the `codes/` folder and inspect one of the modeling notebooks.
 
