@@ -5,7 +5,6 @@ import torch
 def shuffle_sentences(inputs, 
                     accelerator, 
                     end_tokens = torch.tensor([4, 116, 328, 322]), # . ? ! ).
-                    #end_tokens = torch.tensor([4, 72, 116, 131, 328, 322, 2901, 1917]), # . ." ? ; ! ). !" ?"
                     pad_token  = 1):
     
     '''
