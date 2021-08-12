@@ -24,7 +24,6 @@ dependencies:
   - dbus=1.13.18=hb2f20db_0
   - decorator=4.4.2=pyhd3eb1b0_0
   - defusedxml=0.7.1=pyhd3eb1b0_0
-  - entrypoints=0.3=py38_0
   - expat=2.2.10=he6710b0_2
   - ffmpeg=4.3=hf484d3e_0
   - fontconfig=2.13.1=h6c09931_0
