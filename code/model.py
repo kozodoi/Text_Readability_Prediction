@@ -7,7 +7,7 @@ import torch.nn as nn
 import gc
 
 
-def get_model(CFG, pretrained = None, silent = False):
+def get_model(CFG, pretrained = None, silent = False, name = None):
 
     '''
     Get transformer model
@@ -16,9 +16,10 @@ def get_model(CFG, pretrained = None, silent = False):
     # transformer class
     class TransformerModel(nn.Module):
 
-           # init
+        # init
         def __init__(self,
                      model_path,
+                     model_name        = None,
                      hidden_size       = 768,
                      initializer_range = None,
                      pooling           = 'mean',
@@ -32,6 +33,10 @@ def get_model(CFG, pretrained = None, silent = False):
             super(TransformerModel, self).__init__()
 
             # parameters
+            if model_name is None:
+                self.model_name = model_path
+            else:
+                self.model_name = model_name
             self.model_path     = model_path
             self.hidden_size    = hidden_size
             self.init_range     = initializer_range
@@ -46,12 +51,12 @@ def get_model(CFG, pretrained = None, silent = False):
                 self.feature_size *= 2
 
             # layers
-            if 'funnel' in self.model_path:
+            if 'funnel' in self.model_name:
                 self.backbone = AutoModel.from_pretrained(pretrained_model_name_or_path = self.model_path,
                                                           hidden_dropout                = self.hidden_dropout,
                                                           layer_norm_eps                = self.layer_norm_eps,
                                                           output_hidden_states          = True)
-            elif 'distilbert' in self.model_path or 'xlnet' in self.model_path or 'bart' in self.model_path:
+            elif 'distilbert' in self.model_name or 'xlnet' in self.model_name or 'bart' in self.model_name:
                 self.backbone = AutoModel.from_pretrained(pretrained_model_name_or_path = self.model_path,
                                                           dropout                       = self.hidden_dropout,
                                                           output_hidden_states          = True)
@@ -90,7 +95,7 @@ def get_model(CFG, pretrained = None, silent = False):
                     token_type_ids = None):
 
             # backbone output
-            if 'distilbert' in self.model_path or 'xlnet' in self.model_path or 'bart' in self.model_path:
+            if 'distilbert' in self.model_name or 'xlnet' in self.model_name or 'bart' in self.model_name:
                 outputs = self.backbone(input_ids      = input_ids,
                                         attention_mask = attention_mask)
             else:
@@ -102,9 +107,9 @@ def get_model(CFG, pretrained = None, silent = False):
             if self.pooling == 'default':
                 features = outputs['pooler_output']
             else:
-                if 'bart' in self.model_path:
+                if 'bart' in self.model_name:
                     hidden_states = torch.stack(outputs['encoder_hidden_states'])
-                elif 'funnel' in self.model_path:
+                elif 'funnel' in self.model_name:
                     hidden_states = torch.stack(outputs['hidden_states'][-3:])
                 else:
                     hidden_states = torch.stack(outputs['hidden_states'])
@@ -148,6 +153,7 @@ def get_model(CFG, pretrained = None, silent = False):
 
     # initialize model
     model = TransformerModel(model_path        = CFG['backbone'],
+                             model_name        = name,
                              hidden_size       = CFG['hidden_size'],
                              initializer_range = CFG['init_range'],
                              pooling           = CFG['pooling'],
