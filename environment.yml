@@ -238,7 +238,6 @@ dependencies:
     - torch==1.8.0
     - torchvision==0.9.0
     - transformers==4.8.1
-    - warmup-scheduler==0.3.2
     - webcolors==1.11.1
     - websocket-client==0.58.0
     - werkzeug==1.0.1
