@@ -1,14 +1,14 @@
 # libraries
-import streamlit as st
-import numpy as np
+import gc
 import os
-import pandas as pd
 import pickle
 import sys
-import tqdm
+import urllib.request
+import numpy as np
+import pandas as pd
+import requests
+import streamlit as st
 from PIL import Image
-import urllib.request 
-from shutil import copyfile
 
 # custom libraries
 sys.path.append('code')  
@@ -31,11 +31,11 @@ def show_progress(block_num, block_size, total_size):
 st.title('Text Readability Prediction')
 
 # image cover
-image = Image.open('image_cover.jpeg')
+image = Image.open(requests.get('https://i.postimg.cc/hv6yfMYz/cover-books.jpg', stream = True).raw)
 st.image(image)
 
 # description
-st.write('This app allows estimating the reading complexity of a custom text with one of the three transfomer models. The models are part of my top-9% solution to the CommonLit Readability Kaggle competition. [Click here](https://github.com/kozodoi/Kaggle_Readability) to see the code and read more about the training pipeline.')
+st.write('This app allows estimating the reading complexity of a custom text with one of the two transfomer models. The models are part of my top-9% solution to the CommonLit Readability Kaggle competition. [Click here](https://github.com/kozodoi/Kaggle_Readability) to see the code and read more about the training pipeline.')
 
 # model selection
 model_name = st.selectbox(
@@ -52,7 +52,6 @@ if st.button('Compute readability'):
     if model_name == 'RoBERTa':
         folder_path = 'output/v52/'
         weight_path = 'https://github.com/kozodoi/Kaggle_Readability/releases/download/0e96d53/weights_v52.pth'
-        folder_path = 'output/v52/'
     elif model_name == 'DistilBERT':
         folder_path = 'output/v59/'
         weight_path = 'https://github.com/kozodoi/Kaggle_Readability/releases/download/0e96d53/weights_v59.pth'
@@ -66,7 +65,7 @@ if st.button('Compute readability'):
             urllib.request.urlretrieve(weight_path, folder_path + 'pytorch_model.bin', show_progress)
 
     # compute predictions
-    with st.spinner('Computing predictions...'):
+    with st.spinner('Computing prediction...'):
 
         # load config
         config = pickle.load(open(folder_path + 'configuration.pkl', 'rb'))  
@@ -97,6 +96,10 @@ if st.button('Compute readability'):
 
         # model output
         st.write('**Predicted readability score:** ', np.round(prediction, 4))
+
+        # clear memory
+        del model, tokenizer, config, text, inputs, masks, token_type_ids
+        gc.collect()
 
 
 # about the scores
