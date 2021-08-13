@@ -40,7 +40,7 @@ st.write('This app allows estimating the reading complexity of a custom text wit
 # model selection
 model_name = st.selectbox(
     'Which model would you like to use?',
-     ['DistilBERT', 'DistilRoBERTa', 'RoBERTa'])
+     ['DistilBERT', 'DistilRoBERTa'])
 
 # input text
 input_text = st.text_area('Which text would you like to rate?', 'Please enter the text in this field.')
@@ -106,7 +106,7 @@ if st.button('Compute readability'):
 st.write('**Note:** readability scores vary in [-4, 2]. A higher score indicates that the text is easier to read. More details on the used reading complexity metric are available [here](https://www.kaggle.com/c/commonlitreadabilityprize/discussion/240886).')
 
 # example texts
-my_expander = st.expander(label = 'Show example texts')
+my_expander = st.beta_expander(label = 'Show example texts')
 with my_expander:
     st.table(pd.DataFrame({
         'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.', 'String theory is a theoretical framework in which the point-like particles are replaced by one-dimensional strings.'],
