@@ -1,4 +1,4 @@
-# CommonLit Readability Prediction
+# Text Readability Prediction
 
 Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/commonlitreadabilityprize) Kaggle competition on text complexity prediction.
 
@@ -7,11 +7,18 @@ Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/co
 
 ## Summary
 
-Estimating text complexity and readability is a crucial task for school teachers. Offering students text passages at the right level of challenge is important for facilitating a fast development of reading skills. The existing tools to estimate text complexity rely on weak proxies and heuristics, which results in a suboptimal accuracy. This project uses deep learning to predict the readability scores of text passages. 
+Estimating text complexity and readability is a crucial task for school teachers. Offering students text passages at the right level of challenge is important for facilitating a fast development of reading skills. The existing tools to estimate text complexity rely on weak proxies and heuristics, which results in a suboptimal accuracy. This project uses deep learning to predict the readability scores of text passages.
 
 My solution is an ensemble of eight transformer models, including BERT, RoBERTa and others. All transformers are implemented in `PyTorch` and feature a custom regression head that uses a concatenated output of multiple hidden layers. The modeling pipeline implements text augmentations such as sentence order shuffle, backtranslation and injecting target noise. The table below summarizes the main architecture and training parameters. The solution places in the top-9% of the Kaggle competition leaderboard.
 
 ![models](https://i.postimg.cc/JnY0HdWQ/read-params.jpg)
+
+
+## Demo app
+
+The project includes [an interactive web app](https://share.streamlit.io/kozodoi/text_readability_prediction/main/web_app.py). The app allows to estimate reading complexity of a custom text using two of the trained transfomer models. The app is built in Python using the Streamlit package.
+
+![web_app](https://i.postimg.cc/Y0GhrpJB/web-app.jpg)
 
 
 ## Project structure
