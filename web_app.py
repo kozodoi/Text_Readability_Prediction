@@ -109,6 +109,6 @@ st.write('**Note:** readability scores vary in [-4, 2]. A higher score indicates
 my_expander = st.beta_expander(label = 'Show example texts')
 with my_expander:
     st.table(pd.DataFrame({
-        'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.', 'String theory is a theoretical framework in which the point-like particles are replaced by one-dimensional strings.'],
-        'Score': [1.1227, -2.3798],
+        'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.',  'This app does text readability prediction. How cool is that?', 'Pre-training of deep bidirectional transformers for language understanding.'],
+        'Score': [1.5571, -0.0100, -2.5071],
     }))
