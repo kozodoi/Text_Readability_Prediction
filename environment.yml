@@ -225,6 +225,7 @@ dependencies:
     - simplejson==3.17.2
     - smmap==3.0.5
     - sniffio==1.2.0
+    - streamlit==0.86.0
     - strict-rfc3339==0.7
     - swagger-spec-validator==2.7.3
     - tensorboard==2.4.1
