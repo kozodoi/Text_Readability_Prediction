@@ -6,7 +6,6 @@ import sys
 import urllib.request
 import numpy as np
 import pandas as pd
-import requests
 import streamlit as st
 from PIL import Image
 
@@ -31,7 +30,7 @@ def show_progress(block_num, block_size, total_size):
 st.title('Text Readability Prediction')
 
 # image cover
-image = Image.open(requests.get('https://i.postimg.cc/hv6yfMYz/cover-books.jpg', stream = True).raw)
+image = Image.open('image_cover.jpeg')
 st.image(image)
 
 # description
@@ -79,27 +78,32 @@ if st.button('Compute readability'):
         tokenizer = get_tokenizer(config)
 
         # tokenize text
-        text = tokenizer(text                 = input_text,
-                        truncation            = True,
-                        add_special_tokens    = True, 
-                        max_length            = config['max_len'],
-                        padding               = False,
-                        return_token_type_ids = True,
-                        return_attention_mask = True,
-                        return_tensors        = 'pt')
+        text = tokenizer(text                  = input_text,
+                         truncation            = True,
+                         add_special_tokens    = True, 
+                         max_length            = config['max_len'],
+                         padding               = False,
+                         return_token_type_ids = True,
+                         return_attention_mask = True,
+                         return_tensors        = 'pt')
         inputs, masks, token_type_ids = text['input_ids'], text['attention_mask'], text['token_type_ids']
+
+        # clear memory
+        del tokenizer, text, config
+        gc.collect()
 
         # compute prediction
         if input_text != '':
             prediction = model(inputs, masks, token_type_ids)
             prediction = prediction['logits'].detach().numpy()[0][0]
 
-        # model output
-        st.write('**Predicted readability score:** ', np.round(prediction, 4))
-
         # clear memory
-        del model, tokenizer, config, text, inputs, masks, token_type_ids
+        del model, inputs, masks, token_type_ids
         gc.collect()
+
+        # print output
+        st.write('**Predicted readability score:** ', np.round(prediction, 4))
+        print('Prediction done')
 
 
 # about the scores
@@ -109,6 +113,6 @@ st.write('**Note:** readability scores vary in [-4, 2]. A higher score indicates
 my_expander = st.beta_expander(label = 'Show example texts')
 with my_expander:
     st.table(pd.DataFrame({
-        'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.',  'This app does text readability prediction. How cool is that?', 'Pre-training of deep bidirectional transformers for language understanding.'],
-        'Score': [1.5571, -0.0100, -2.5071],
+        'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.',  'This app does text readability prediction. How cool is that?', 'Training of deep bidirectional transformers for language understanding.'],
+        'Score': [1.5571, -0.0100, -2.4025],
     }))
