@@ -122,7 +122,6 @@ dependencies:
   - readline=8.1=h27cfd23_0
   - requests=2.25.1=pyhd3eb1b0_0
   - scikit-learn=0.24.1=py38ha9443f7_0
-  - scipy=1.6.1=py38h91f5cce_0
   - seaborn=0.11.1=pyhd3eb1b0_0
   - send2trash=1.5.0=pyhd3eb1b0_1
   - setuptools=52.0.0=py38h06a4308_0
@@ -133,7 +132,6 @@ dependencies:
   - testpath=0.4.4=pyhd3eb1b0_0
   - threadpoolctl=2.1.0=pyh5ca1d4c_0
   - tk=8.6.10=hbc83047_0
-  - torchaudio=0.8.0=py38
   - tornado=6.1=py38h27cfd23_0
   - tqdm=4.59.0=pyhb85f177_0
   - traitlets=5.0.5=pyhd3eb1b0_0
@@ -152,14 +150,12 @@ dependencies:
     - absl-py==0.12.0
     - accelerate==0.4.0
     - adamp==0.3.0
-    - albumentations==1.0.0
     - anyio==2.2.0
     - aquirdturtle-collapsible-headings==3.0.1
     - babel==2.9.0
     - bravado==11.0.3
     - bravado-core==5.17.0
     - cachetools==4.2.1
-    - catboost==0.24.4
     - click==7.1.2
     - cython==0.29.22
     - filelock==3.0.12
@@ -171,10 +167,7 @@ dependencies:
     - grpcio==1.36.1
     - huggingface-hub==0.0.12
     - imageio==2.9.0
-    - imbalanced-learn==0.8.0
-    - imblearn==0.0
     - imgaug==0.4.0
-    - ipdb==0.13.9
     - jsonpointer==2.1
     - jsonref==0.2
     - jupyter-packaging==0.7.12
@@ -182,10 +175,7 @@ dependencies:
     - jupyter-server==1.4.1
     - jupyterlab==3.1.0a3
     - jupyterlab-server==2.3.0
-    - jupyterlab-system-monitor==0.8.0
     - jupyterlab-topbar==0.6.1
-    - lckr-jupyterlab-variableinspector==3.0.6
-    - levenshtein==0.12.0
     - lightgbm==3.1.1
     - madgrad==1.1
     - markdown==3.3.4
@@ -200,9 +190,7 @@ dependencies:
     - opencv-python-headless==4.5.1.48
     - path==15.1.2
     - path-py==12.5.0
-    - pickle5==0.0.11
     - pillow==8.2.0
-    - pillow-simd==7.0.0.post3
     - plotly==4.14.3
     - protobuf==3.15.6
     - psutil==5.8.0
@@ -220,8 +208,6 @@ dependencies:
     - rsa==4.7.2
     - sacremoses==0.0.45
     - scandir==1.10.0
-    - scikit-image==0.18.1
-    - shapely==1.7.1
     - simplejson==3.17.2
     - smmap==3.0.5
     - sniffio==1.2.0
@@ -231,7 +217,6 @@ dependencies:
     - tensorboard==2.4.1
     - tensorboard-plugin-wit==1.8.0
     - thop==0.0.31-2005241907
-    - tifffile==2021.3.5
     - timm==0.4.12
     - tokenizers==0.10.3
     - toml==0.10.2
@@ -241,5 +226,4 @@ dependencies:
     - webcolors==1.11.1
     - websocket-client==0.58.0
     - werkzeug==1.0.1
-    - xgboost==1.3.3
 prefix: /home/RDC/kozodoin4.hub/.conda/envs/py3
