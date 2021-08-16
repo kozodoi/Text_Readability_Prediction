@@ -4,13 +4,14 @@ import os
 import pickle
 import sys
 import urllib.request
+import requests
 import numpy as np
 import pandas as pd
 import streamlit as st
 from PIL import Image
 
 # custom libraries
-sys.path.append('code')  
+sys.path.append('code')
 from model import get_model
 from tokenizer import get_tokenizer
 
@@ -30,7 +31,7 @@ def show_progress(block_num, block_size, total_size):
 st.title('Text Readability Prediction')
 
 # image cover
-image = Image.open('image_cover.jpeg')
+image = Image.open(requests.get('https://i.postimg.cc/hv6yfMYz/cover-books.jpg', stream = True).raw)
 st.image(image)
 
 # description
@@ -46,7 +47,7 @@ input_text = st.text_area('Which text would you like to rate?', 'Please enter th
 
 # compute readability
 if st.button('Compute readability'):
-    
+
     # specify paths
     if model_name == 'DistilBERT':
         folder_path = 'output/v59/'
@@ -67,12 +68,12 @@ if st.button('Compute readability'):
         gc.collect()
 
         # load config
-        config = pickle.load(open(folder_path + 'configuration.pkl', 'rb'))  
+        config = pickle.load(open(folder_path + 'configuration.pkl', 'rb'))
         config['backbone'] = folder_path
 
         # initialize model
         model = get_model(config, name = model_name.lower(), pretrained = folder_path + 'pytorch_model.bin')
-        model.eval()    
+        model.eval()
 
         # load tokenizer
         tokenizer = get_tokenizer(config)
@@ -80,7 +81,7 @@ if st.button('Compute readability'):
         # tokenize text
         text = tokenizer(text                  = input_text,
                          truncation            = True,
-                         add_special_tokens    = True, 
+                         add_special_tokens    = True,
                          max_length            = config['max_len'],
                          padding               = False,
                          return_token_type_ids = True,
