@@ -48,10 +48,7 @@ input_text = st.text_area('Which text would you like to rate?', 'Please enter th
 if st.button('Compute readability'):
     
     # specify paths
-    if model_name == 'RoBERTa':
-        folder_path = 'output/v52/'
-        weight_path = 'https://github.com/kozodoi/Kaggle_Readability/releases/download/0e96d53/weights_v52.pth'
-    elif model_name == 'DistilBERT':
+    if model_name == 'DistilBERT':
         folder_path = 'output/v59/'
         weight_path = 'https://github.com/kozodoi/Kaggle_Readability/releases/download/0e96d53/weights_v59.pth'
     elif model_name == 'DistilRoBERTa':
@@ -65,6 +62,9 @@ if st.button('Compute readability'):
 
     # compute predictions
     with st.spinner('Computing prediction...'):
+
+        # clear memory
+        gc.collect()
 
         # load config
         config = pickle.load(open(folder_path + 'configuration.pkl', 'rb'))  
@@ -103,8 +103,6 @@ if st.button('Compute readability'):
 
         # print output
         st.write('**Predicted readability score:** ', np.round(prediction, 4))
-        print('Prediction done')
-
 
 # about the scores
 st.write('**Note:** readability scores vary in [-4, 2]. A higher score indicates that the text is easier to read. More details on the used reading complexity metric are available [here](https://www.kaggle.com/c/commonlitreadabilityprize/discussion/240886).')
