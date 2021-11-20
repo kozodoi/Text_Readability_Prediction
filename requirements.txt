@@ -1,7 +1,7 @@
 torch==1.8.0
 numpy==1.19.2
 pandas==1.2.3
-PIL==8.2.0
+pillow==8.2.0
 requests==2.25.1
 transformers==4.8.1
 streamlit==1.2.0
