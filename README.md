@@ -1,6 +1,6 @@
 # Text Readability Prediction
 
-Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/commonlitreadabilityprize) Kaggle competition on text complexity prediction.
+Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/commonlitreadabilityprize) Kaggle competition on text complexity prediction and interactive web app for evaluating your own text.
 
 ![sample](https://i.postimg.cc/hv6yfMYz/cover-books.jpg)
 
@@ -16,7 +16,7 @@ My solution is an ensemble of eight transformer models, including BERT, RoBERTa 
 
 ## Demo app
 
-The project includes [an interactive web app](https://share.streamlit.io/kozodoi/text_readability_prediction/main/web_app.py). The app allows to estimate reading complexity of a custom text using two of the trained transfomer models. The app is built in Python using the Streamlit package.
+The project includes [an interactive web app](https://share.streamlit.io/kozodoi/text_readability_prediction/main/web_app.py). The app allows estimating reading complexity of a custom text using one of the trained transformer models. The app is built in Python using the Streamlit package.
 
 ![web_app](https://i.postimg.cc/Y0GhrpJB/web-app.jpg)
 
@@ -34,11 +34,14 @@ The project has the following structure:
 
 ### Environment
 
-To work with the repo, I recommend to create a virtual Conda environment from the `environment.yml` file:
+To work with the repo, I recommend to create a virtual Conda environment from the `project_environment.yml` file:
 ```
-conda env create --name read --file environment.yml
+conda env create --name read --file project_environment.yml
 conda activate read
 ```
+
+The file `requirements.txt` provides the list of dependencies for the web app.
+
 
 ### Reproducing solution
 
