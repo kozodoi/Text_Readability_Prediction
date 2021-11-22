@@ -61,7 +61,7 @@ st.header('How readable is your text?')
 # model selection
 model_name = st.selectbox(
     'Which model would you like to use?',
-     ['DistilBERT', 'DistilRoBERTa'])
+    ['DistilBERT', 'DistilRoBERTa'])
 
 # input text
 input_text = st.text_area('Which text would you like to rate?', 'Please enter the text in this field.')
@@ -121,14 +121,15 @@ if st.button('Compute readability'):
         if input_text != '':
             prediction = model(inputs, masks, token_type_ids)
             prediction = prediction['logits'].detach().numpy()[0][0]
+            prediction = 100 * (prediction + 4) / 6 # scale to [0,100]
 
         # clear memory
         del model, inputs, masks, token_type_ids
         gc.collect()
 
         # print output
-        st.metric('Readability score', str(np.round(prediction, 4)))
-        st.write('**Note:** readability varies in [-4, 2]. A higher score means that the text is easier to read.')
+        st.metric('Readability score:', '{:.2f}%'.format(prediction, 2))
+        st.write('**Note:** readability scores are scaled to [0, 100%]. A higher score means that the text is easier to read.')
         st.success('Success! Thanks for scoring your text :)')
 
 
@@ -141,7 +142,7 @@ st.header('More information')
 with st.expander('Show example texts'):
     st.table(pd.DataFrame({
         'Text':  ['A dog sits on the floor. A cat sleeps on the sofa.',  'This app does text readability prediction. How cool is that?', 'Training of deep bidirectional transformers for language understanding.'],
-        'Score': [1.5571, -0.0100, -2.4025],
+        'Score': ['92.62%', '66.50%', '26.62%'],
     }))
     
 # models
@@ -150,7 +151,7 @@ with st.expander('Read about the models'):
     
 # metric
 with st.expander('Read about the metric'):
-    st.write("The readability metric is calculated on the basis of a Bradley-Terry analysis of more than 111,000 pairwise comparisons between excerpts. Teachers spanning grades 3-12 (a majority teaching between grades 6-10) served as the raters for these comparisons. More details on the used reading complexity metric are available [here](https://www.kaggle.com/c/commonlitreadabilityprize/discussion/240886).")
+    st.write("The readability metric is calculated on the basis of a Bradley-Terry analysis of more than 111,000 pairwise comparisons between excerpts. Teachers spanning grades 3-12 (a majority teaching between grades 6-10) served as the raters for these comparisons. The raw scores vary in [-4, 2] and are scaled to [0, 100%] for convenience. More details on the used reading complexity metric are available [here](https://www.kaggle.com/c/commonlitreadabilityprize/discussion/240886).")
     
     
 ##### CONTACT
