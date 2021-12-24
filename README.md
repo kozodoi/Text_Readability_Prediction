@@ -34,7 +34,7 @@ The project has the following structure:
 
 ### Environment
 
-To work with the repo, I recommend to create a virtual Conda environment from the `project_environment.yml` file:
+To work with the repo, I recommend creating a virtual Conda environment from the `project_environment.yml` file:
 ```
 conda env create --name read --file project_environment.yml
 conda activate read
