@@ -22,13 +22,13 @@ def run_training(df, CFG):
     # placeholder
     oof_score = []
     
-    # outer repeattions loop
+    # outer repetitions loop
     for rep in range(CFG['num_reps']):
         
         # placeholder
         rep_oof_score = []
 
-        # cross-validation looop
+        # cross-validation loop
         for fold in range(CFG['num_folds']):
             
             # initialize accelerator

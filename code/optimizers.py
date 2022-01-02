@@ -5,7 +5,8 @@ from madgrad import MADGRAD
 
 
 
-def get_optimizer(CFG, model):
+def get_optimizer(CFG, 
+                  model):
     
     '''
     Get optimizer
@@ -25,7 +26,7 @@ def get_optimizer(CFG, model):
                    'weight_decay': 0.0,
                    'lr':           CFG['lr'] * 10}]
     
-    # params in backbnoe layers
+    # params in backbone layers
     layer_lr = CFG['lr']
     for layer in backbone_layers:
         parameters += [{'params':       [p for n, p in model.named_parameters() if layer in n and not any(nd in n for nd in no_decay) and p.requires_grad],

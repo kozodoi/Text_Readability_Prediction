@@ -3,12 +3,12 @@ import torch
 
 
 def shuffle_sentences(inputs, 
-                    accelerator, 
-                    end_tokens = torch.tensor([4, 116, 328, 322]), # . ? ! ).
-                    pad_token  = 1):
+                      accelerator, 
+                      end_tokens = torch.tensor([4, 116, 328, 322]), # . ? ! ).
+                      pad_token  = 1):
     
     '''
-    Shuffle sentecne order
+    Shuffle sentence order
     '''
     
     # send to device
