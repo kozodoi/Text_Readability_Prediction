@@ -90,10 +90,13 @@ def get_data(df,
     df_valid = df.loc[df['fold' + str(rep)] == fold].reset_index(drop = True)
     if not silent:
         accelerator.print('- no. observations: train - {}, valid - {}'.format(len(df_train), len(df_valid)))
+        
+    # checks
+    assert len(df_train) + len(df_valid) == len(df), 'Incorrect no. observations'
 
     # subset for debug mode
     if debug is None:
-        debig = CFG['debug']
+        debug = CFG['debug']
     if debug:
         df_train = df_train.sample(CFG['batch_size'] * 10, random_state = CFG['seed']).reset_index(drop = True)
         df_valid = df_valid.sample(CFG['batch_size'] * 10, random_state = CFG['seed']).reset_index(drop = True)

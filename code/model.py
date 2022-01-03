@@ -7,7 +7,10 @@ import torch.nn as nn
 import gc
 
 
-def get_model(CFG, pretrained = None, silent = False, name = None):
+def get_model(CFG, 
+              pretrained = None, 
+              silent     = False, 
+              name       = None):
 
     '''
     Get transformer model
@@ -29,9 +32,14 @@ def get_model(CFG, pretrained = None, silent = False, name = None):
                      hidden_dropout    = 0.0,
                      head_dropout      = 0.0):
 
-
             super(TransformerModel, self).__init__()
-
+            
+            # checks
+            assert hidden_dropout > 0, 'dropout has to be positive'
+            assert head_dropout   > 0, 'dropout has to be positive'
+            assert concat_layers  > 0, 'concat_layers has to be positive'
+            assert hidden_size    > 0, 'hidden_size has to be positive'
+            
             # parameters
             if model_name is None:
                 self.model_name = model_path

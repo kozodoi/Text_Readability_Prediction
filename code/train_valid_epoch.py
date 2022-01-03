@@ -161,6 +161,9 @@ def train_valid_epoch(trn_loader,
             if CFG['swa']:
                 swa_model.train()
 
+            # checks
+            assert len(LABELS) == len(PREDS),  'Labels and predictions are not the same length'
+
             # feedback
             step_scores.append(get_score(np.concatenate(LABELS), np.concatenate(PREDS)))
             if CFG['batch_verbose']:

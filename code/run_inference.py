@@ -11,7 +11,9 @@ import numpy as np
 
 
 
-def run_inference(df, df_test, CFG):
+def run_inference(df, 
+                  df_test, 
+                  CFG):
     
     '''
     Run inference loop
@@ -101,3 +103,7 @@ def run_inference(df, df_test, CFG):
         sub.to_csv(CFG['out_path'] + 'submission.csv', index = False, float_format = '%.10f')
         if CFG['tracking']:
             neptune.send_artifact(CFG['out_path'] + 'submission.csv')
+            
+    # checks
+    assert len(oof_all) == len(df),  'OOF predictions and training data are not the same length'
+    assert len(sub) == len(df_test), 'Test predictions and test data are not the same length'
