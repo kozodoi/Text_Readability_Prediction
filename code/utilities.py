@@ -47,9 +47,15 @@ def worker_init_fn(worker_id):
 # simple ensembles
 def compute_blend(df, preds, blend, CFG, weights = None):
     
+    # checks
+    if weights is not None:
+        assert len(preds) == len(weights), 'Weights and preds are not the same length'
+    
+    # equal weights
     if weights is None:
         weights = np.ones(len(preds)) / len(preds)
         
+    # compute blend
     if blend == 'amean':
         out = np.sum(df[preds].values * weights, axis = 1)
     elif blend == 'median':
@@ -60,4 +66,5 @@ def compute_blend(df, preds, blend, CFG, weights = None):
         out = np.sum(np.power(df[preds].values, CFG['power']) * weights, axis = 1) ** (1 / CFG['power'])
     elif blend == 'rmean':
         out = np.sum(df[preds].rank(pct = True).values * weights, axis = 1)
+        
     return out

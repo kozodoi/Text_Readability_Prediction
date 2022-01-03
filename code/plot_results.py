@@ -4,7 +4,12 @@ import numpy as np
 
 
 
-def plot_results(trn_losses, val_losses, val_scores, rep, fold, CFG):
+def plot_results(trn_losses, 
+                 val_losses, 
+                 val_scores, 
+                 rep, 
+                 fold, 
+                 CFG):
     
     '''
     Plot modeling results
@@ -19,7 +24,6 @@ def plot_results(trn_losses, val_losses, val_scores, rep, fold, CFG):
     x = np.argmin(np.array(val_losses)) + 1; y = min(val_losses)
     xdist = plt.xlim()[1] - plt.xlim()[0]; ydist = plt.ylim()[1] - plt.ylim()[0]
     plt.scatter(x, y, s = 200, color = 'green')
-    #plt.text(x - 0.04*xdist, y - 0.045*ydist, 'loss = {:.4f}'.format(y), size = 15)
 
     # annotations
     plt.ylabel('Loss', size = 14); plt.xlabel('Epoch', size = 14)

@@ -14,7 +14,11 @@ import gc
 
 
 
-def sample_batch(CFG, df, sample_size = 5, seq_size = 15, batch_idx = 0):
+def sample_batch(CFG, 
+                 df, 
+                 sample_size = 5, 
+                 seq_size    = 15, 
+                 batch_idx   = 0):
 
     '''
     Display sample training and validation batch

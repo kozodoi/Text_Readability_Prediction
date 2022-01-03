@@ -14,7 +14,13 @@ from accelerate import Accelerator, DistributedType
 
 
 
-def train_fold(rep, fold, df_trn, df_val, CFG, model, accelerator):
+def train_fold(rep, 
+               fold, 
+               df_trn, 
+               df_val, 
+               CFG, 
+               model, 
+               accelerator):
     
     '''
     Run training and validation on a single fold
