@@ -35,10 +35,10 @@ def get_model(CFG,
             super(TransformerModel, self).__init__()
             
             # checks
-            assert hidden_dropout > 0, 'dropout has to be positive'
-            assert head_dropout   > 0, 'dropout has to be positive'
-            assert concat_layers  > 0, 'concat_layers has to be positive'
-            assert hidden_size    > 0, 'hidden_size has to be positive'
+            assert hidden_dropout >= 0, 'dropout has to be greater than zero'
+            assert head_dropout   >= 0, 'dropout has to be greater than zero'
+            assert concat_layers  > 0,  'concat_layers has to be positive'
+            assert hidden_size    > 0,  'hidden_size has to be positive'
             
             # parameters
             if model_name is None:
