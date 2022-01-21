@@ -25,7 +25,7 @@ The project includes [an interactive web app](https://share.streamlit.io/kozodoi
 
 The project has the following structure:
 - `codes/`: `.py` main scripts with data, model, training and inference modules
-- `notebooks/`: `.ipynb` Colab-friendly notebooks with model training and emsembling
+- `notebooks/`: `.ipynb` Colab-friendly notebooks with model training and ensembling
 - `input/`: input data, including raw texts, backtranslated texts and meta-features
 - `output/`: model configurations, weights and figures exported from the notebooks
 
