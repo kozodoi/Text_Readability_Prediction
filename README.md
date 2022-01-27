@@ -1,8 +1,13 @@
 # Text Readability Prediction
 
-Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/commonlitreadabilityprize) Kaggle competition on text complexity prediction and interactive web app for evaluating your own text.
+Top-9% solution to the [CommonLit Readability Prize](https://www.kaggle.com/c/commonlitreadabilityprize) Kaggle competition on text complexity prediction and [interactive web app](https://share.streamlit.io/kozodoi/text_readability_prediction/main/web_app.py) for evaluating your own text.
 
 ![sample](https://i.postimg.cc/hv6yfMYz/cover-books.jpg)
+
+- [Summary](#summary)
+- [Demo app](#demo-app)
+- [Project structure](#project-structure)
+- [Working with the repo](#working-with-the-repo)
 
 
 ## Summary
