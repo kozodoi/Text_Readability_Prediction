@@ -13,12 +13,17 @@ import torch
 
 
 
-def run_training(df, CFG):
+def run_training(df, 
+                 CFG):
     
     '''
     Run cross-validation loop
     '''
-        
+    
+    # tests
+    assert isinstance(CFG, dict),         'CFG has to be a dict with parameters'
+    assert isinstance(df,  pd.DataFrame), 'df has to be a pandas dataframe'
+    
     # placeholder
     oof_score = []
     

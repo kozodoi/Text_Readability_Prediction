@@ -9,7 +9,10 @@ def get_tokenizer(CFG):
     '''
     Get tokenizer
     '''
-
-    tokenizer = AutoTokenizer.from_pretrained(CFG['backbone'])
     
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
+
+    # tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(CFG['backbone'])
     return tokenizer

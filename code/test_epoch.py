@@ -19,6 +19,9 @@ def test_epoch(loader,
     '''
 
     ##### PREPARATIONS
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
 
     # switch regime
     model.eval()

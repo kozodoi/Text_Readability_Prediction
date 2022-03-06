@@ -8,6 +8,9 @@ def get_losses(CFG):
     '''
     Get loss function
     '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
 
     # define training loss
     if CFG['loss_fn'] == 'MSE' or CFG['loss_fn'] == 'RMSE':

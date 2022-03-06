@@ -15,6 +15,9 @@ def get_model(CFG,
     '''
     Get transformer model
     '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
 
     # transformer class
     class TransformerModel(nn.Module):

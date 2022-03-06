@@ -13,7 +13,10 @@ def get_optimizer(CFG,
     '''
     
     ##### PREPARATIONS
-       
+
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
+    
     # list of layers with no decay
     no_decay = ['bias', 'gamma', 'beta', 'LayerNorm.weight']
         

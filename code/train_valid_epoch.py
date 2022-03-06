@@ -31,7 +31,12 @@ def train_valid_epoch(trn_loader,
     '''
 
     ##### PREPARATIONS
-
+    
+    # tests
+    assert isinstance(CFG,    dict), 'CFG has to be a dict with parameters'
+    assert isinstance(rep,    int),  'rep has to be an integer'
+    assert isinstance(fold,   int),  'fold has to be an integer'
+    
     # switch regime
     model.train()
 

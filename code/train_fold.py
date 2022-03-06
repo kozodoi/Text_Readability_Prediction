@@ -11,6 +11,7 @@ import time
 import gc
 import neptune
 from accelerate import Accelerator, DistributedType
+import pandas as pd
 
 
 
@@ -28,6 +29,13 @@ def train_fold(rep,
 
     ##### PREPARATIONS
     
+    # tests
+    assert isinstance(CFG,    dict),         'CFG has to be a dict with parameters'
+    assert isinstance(df_trn, pd.DataFrame), 'df_trn has to be a pandas dataframe'
+    assert isinstance(df_val, pd.DataFrame), 'df_val has to be a pandas dataframe'
+    assert isinstance(rep,    int),          'rep has to be an integer'
+    assert isinstance(fold,   int),          'fold has to be an integer'
+
     # update seed
     seed_everything(CFG['seed'] + rep*10 + fold*100, accelerator, silent = True)
     

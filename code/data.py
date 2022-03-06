@@ -84,6 +84,12 @@ def get_data(df,
     '''
     Get training and validation data
     '''
+    
+    # tests
+    assert isinstance(df,    pd.DataFrame), 'df has to be a pandas dataframe'
+    assert isinstance(rep,   int),          'rep has to be an integer'
+    assert isinstance(fold,  int),          'fold has to be an integer'
+    assert isinstance(CFG,   dict),         'CFG has to be a dict with parameters'
 
     # load splits
     df_train = df.loc[df['fold' + str(rep)] != fold].reset_index(drop = True)
@@ -148,6 +154,12 @@ def get_loaders(df_train,
     '''
     Get training and validation dataloaders
     '''
+    
+    # tests
+    assert isinstance(df_train, pd.DataFrame), 'df_train has to be a pandas dataframe'
+    assert isinstance(df_valid, pd.DataFrame), 'df_valid has to be a pandas dataframe'
+    assert isinstance(CFG, dict),              'CFG has to be a dict with parameters'
+
 
     ##### DATASETS
     

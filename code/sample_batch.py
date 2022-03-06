@@ -23,6 +23,13 @@ def sample_batch(CFG,
     '''
     Display sample training and validation batch
     '''
+    
+    # tests
+    assert isinstance(CFG, dict),         'CFG has to be a dict with parameters'
+    assert isinstance(df,  pd.DataFrame), 'df has to be a pandas dataframe'
+    assert sample_size > 0,               'sample_size has to be positive'
+    assert seq_size > 0,                  'seq_size has to be positive'
+    assert batch_idx >= 0,                'batch_idx has to be an integer'
 
     ##### PREPARATIONS
 

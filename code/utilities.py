@@ -28,6 +28,7 @@ def smart_print(expression, accelerator = None):
         
 # randomness
 def seed_everything(seed, accelerator = None, silent = False):
+    assert isinstance(seed, int), 'seed has to be an integer'
     os.environ['PYTHONHASHSEED'] = str(seed)
     random.seed(seed)
     np.random.seed(seed)
