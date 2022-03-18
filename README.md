@@ -23,7 +23,7 @@ My solution is an ensemble of eight transformer models, including BERT, RoBERTa 
 
 The project includes [an interactive web app](https://share.streamlit.io/kozodoi/text_readability_prediction/main/web_app.py). The app allows estimating reading complexity of a custom text using one of the trained transformer models. The app is built in Python using the Streamlit package.
 
-![web_app](https://i.postimg.cc/fTBCX3LY/ezgif-com-gif-maker-6.gif)
+![web_app](https://i.postimg.cc/B6J8kcVq/gif-books.gif)
 
 
 ## Project structure
